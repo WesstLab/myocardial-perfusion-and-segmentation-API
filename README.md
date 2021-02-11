@@ -12,7 +12,9 @@ Next, we will explain how to install the environment used to use the program, fr
 
 1.	Install the anaconda distributor.
 [![](https://assets-cdn.anaconda.com/assets/company/anaconda-logo.png?mtime=20200723150109&focal=none)](https://www.anaconda.com/products/individual#Downloads)
+
 2.	Once installed, you must enter the Anaconda navigator.
+
 3.	go to **"Environments"**, then to **"root"**, press the arrow and press open terminal to create a virtual environment with the following command in the terminal:
 ```bash
 conda env create --file environment.yml
