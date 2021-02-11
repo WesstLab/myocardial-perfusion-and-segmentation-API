@@ -32,4 +32,5 @@ With that the application should work and process the images correctly.
 
 # Notes
 
-The **"Export results"** button is currently unavailable.
+.To run the application run test.py
+.The **"Export results"** button is currently unavailable.
