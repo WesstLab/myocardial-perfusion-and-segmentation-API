@@ -12,9 +12,10 @@ Next, we will explain how to install the environment used to use the program, fr
 
 1.	Install the anaconda distributor.
 2.	Once installed, you must enter the Anaconda navigator.
-3.	go to "Environments", then to "root", press the arrow and press open terminal to create a virtual environment with the following command in the terminal: 
+3.	go to "Environments", then to "root", press the arrow and press open terminal to create a virtual environment with the following command in the terminal:
+```bash
 conda env create --file environment.yml
-
+```
 With this, the virtual environment is ready to run the application
 
 ## Trained model
