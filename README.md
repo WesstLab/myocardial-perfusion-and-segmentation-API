@@ -16,6 +16,7 @@ Next, we will explain how to install the environment used to use the program, fr
 2.	Once installed, you must enter the Anaconda navigator.
 
 3.	go to **"Environments"**, then to **"root"**, press the arrow and press open terminal to create a virtual environment with the following command in the terminal:
+
 ```bash
 conda env create --file environment.yml
 ```
@@ -32,5 +33,5 @@ With that the application should work and process the images correctly.
 
 # Notes
 
-To run the application run test.py
-The **"Export results"** button is currently unavailable.
+1. To execute the application run **"test.py"**
+2. The **"Export results"** button is currently unavailable.
