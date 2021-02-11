@@ -128,13 +128,13 @@ class AppController:
         """
         asd
         print(os.getcwd() + '\\segmentation\\checkpoint\\model')
-        checkpoint_path = "C:\\Users\\Seba\\Desktop\\ProyectoE\\" \
-                          "Interfaz1/segmentation/checkpoint/model"
+        checkpoint_path = "\\Users\\Seba\\Desktop\\ProyectoE\\" \
+                          "Interfaz1\\segmentation\\checkpoint\\model"
 
         """
         print(os.getcwd() + '\\segmentation\\checkpoint\\model')
-        checkpoint_path = "\\Users\\Seba\\Desktop\\ProyectoE\\" \
-                          "Interface\\segmentation\\checkpoint\\model"
+        checkpoint_path = os.getcwd() + '\\segmentation\\checkpoint\\model'
+
         model = U_net()
         model.saver.restore(model.sess, checkpoint_path)
 
