@@ -29,7 +29,7 @@ With this, the virtual environment is ready to run the application
 
 The trained model is the algorithm that processes the heart images and delivers the results. To integrate the trained model to the application, you must:
 
-1.	Download model from the following link: https://drive.google.com/file/d/1SHUHxrZHm8eR9kIf9HXl9Lh9I7bf799r/view?usp=sharing
+1.	Download model from the following link: https://drive.google.com/file/d/1yKvDG5ozL1sTA0WbBU00TrHb3jZKOLGL/view?usp=sharing
 2.	Place the model in the **"segmentation"** folder of the project.
 
 With that the application should work and process the images correctly.
