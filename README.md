@@ -11,7 +11,7 @@ In the **"Dataset"** folder you can find images in DICOM format that were used t
 
 ## Environment installation
 
-Next, we will explain how to install the environment used to use the program, from installing anaconda to implementing the virtual environment with the environment.yml file:
+Next, we will explain how to install the environment used to use the program, from installing anaconda to implementing the virtual environment with the **environment.yml** file:
 
 1.	Install the anaconda distributor.
 [![](https://assets-cdn.anaconda.com/assets/company/anaconda-logo.png?mtime=20200723150109&focal=none)](https://www.anaconda.com/products/individual#Downloads)
