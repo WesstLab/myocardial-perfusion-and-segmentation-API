@@ -4,10 +4,10 @@ from scipy import signal
 
 def calculo_maximo(data, time):
     """
-    Calcula el mayor valor de la data entrante, y devuelve el tiempo y la posición en la que se encuentra este mayor
-    :param data: Data en la que se busca el max
-    :param time: Array de tiempo, corresponde al tiempo de cada dato de data
-    :return: maximo valor, tiempo en el que ocurre, y la posición del array
+    Calculates the largest value of the incoming data, and returns the time and position at which this largest value is found.
+    param data: Data in which the max is searched.
+    param time: Array of time, corresponds to the time of each data entry
+    return: max value, time at which it occurs, and the position of the array
     """
     input_data = np.array(data)
     pos_max = signal.find_peaks_cwt(input_data, np.arange(1, 150))[0]
@@ -19,11 +19,11 @@ def calculo_maximo(data, time):
 
 def calculo_pendiente(data, time):
     """
-    Devuelve la pendiente inicial, considerando el rise time de la curva com el momento donde la data sube desde el 10%
-    del máximo al 90% del máximo
-    :param data: Data de entrada, eje X
-    :param time: Data de tiempo, eje Y
-    :return: valor de la pendiente, tiempo inicial, tiempo final, valor inicial, valor final
+    Returns the initial slope, considering the rise time of the curve as the moment where the data rises from 10% of the maximum to 90% of the maximum.
+    of maximum to 90% of maximum
+    param data: Input data, X-axis
+    param time: Time data, Y-axis
+    return: value of slope, initial time, final time, initial value, final value
     """
     max_data, time_max, pos_max = calculo_maximo(data, time)
     por10 = max_data*0.1
@@ -52,10 +52,10 @@ def calculo_pendiente(data, time):
 
 def calculo_area_curva(data, time):
     """
-    Entregado el tiempo y la data, calcula el área de la curva utilizando trampz de Numpy
-    :param data: Array con los valores de los promedios de las intensidades
-    :param time: Array con los valores de tiempo de las imágenes
-    :return: area calculada, redondeada al segundo decimal
+    Given the time and data, calculate the area of the curve using Numpy trampz
+    param data: Array with the values of the averages of the intensities
+    param time: Array with the time values of the images
+    :return: calculated area, rounded to the second decimal place
     """
     input_data = np.array(data)
     input_time = np.array(time)
