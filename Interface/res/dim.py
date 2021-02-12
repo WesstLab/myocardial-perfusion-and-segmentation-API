@@ -1,4 +1,4 @@
-# Archivo con constantes del programa
+# File with program constants
 
 WIDTH = 1280
 HEIGHT = 720
@@ -11,7 +11,7 @@ HEIGHT_FRAME_DATOS = HEIGHT
 HEIGHT_FRAME_OPT = HEIGHT * (1 / 7) #102.857
 HEIGHT_FRAME_IMG = 610 #HEIGHT * (6 / 7) #617.1428
 
-# Frame de Upload Inicial
+# Initial Upload Frame
 WIDTH_UI_FD_TXT_INICIAL = WIDTH_FRAME_DATOS / 2
 HEIGHT_UI_FD_TXT_INICIAL = 50
 
@@ -34,12 +34,12 @@ WIDTH_TEXT_TITLE_IMG = WIDTH_UI_RES_IMG_REST
 HEIGHT_TEXT_TITLE_IMG = 20
 HEIGHT_CANVAS_IMG = HEIGHT_UI_RESULT - HEIGHT_TEXT_TITLE_IMG
 
-#  Imágenes de previsualización en Upload_Image
+#  Preview images on Upload_Image
 WIDTH_CANVAS_IMG_UL = WIDTH_UI_RES_IMG
 WIDTH_IMG_UL = WIDTH_UI_RESULT / 4
 
 
-####  SCREEN RESULTADOS  #####
+####  SCREEN RESULTS  #####
 
 WIDTH_FRAME_BUTTONS = int(WIDTH_FRAME_OPT / 3)
 WIDTH_BUTTONS_OPT = int(WIDTH_FRAME_BUTTONS/2)
