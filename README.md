@@ -1,6 +1,6 @@
 # Myocardial-perfusion-and-segmentation-API
 
-API prototype for myocardial magnetic resonance image visualization and segmentation and perfusion curve analysis this prototype has been developed in the Python( 3.6) programming language using tkinter, opencv, scikit, tensorflow and other libraries with the distributor Anaconda. 
+API prototype for myocardial magnetic resonance image visualization and segmentation and perfusion curve analysis this prototype has been developed in the Python( 3.6) programming language using tkinter, opencv, scikit, tensorflow (Ver 1.14) and other libraries with the distributor Anaconda. 
 
 # 1. Demo 
 
