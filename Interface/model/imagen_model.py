@@ -62,7 +62,7 @@ class Imagen:
 
     def separacion_miocardio(self):
         """
-        Detecta borde del predict, su centro y separa el miocardio entre epicardio y endocardio
+        Detects predict edge, its center and separates the myocardium between epicardium and endocardium.
         :return:
         """
         self.deteccion_bordes()
@@ -71,8 +71,8 @@ class Imagen:
 
     def deteccion_bordes(self):
         """
-        Detecta los bordes de la segmentacion encontrada usando Canny
-        :return: guarda los resultados en self.border
+        Detects the edges of the found segmentation using Canny.
+        return: saves the results in self.border
         """
         img_augmented = self.predict * 5
         border = cv2.Canny(img_augmented, 3, 7)
@@ -80,8 +80,8 @@ class Imagen:
 
     def detectar_centro(self):
         """
-        Detectar el centro del miocardio. Para esto se calcula el promedio de las posiciones del pool de sangre
-        :return: guarda el centro en self.radio
+        Detect the center of the myocardium. For this, the average of the positions of the blood pool is calculated.
+        return: store the center in self.radius
         """
         sum_x = 0
         sum_y = 0
@@ -104,12 +104,12 @@ class Imagen:
 
     def detectar_separacion(self):
         """
-        Detectar que parte del miocardio es parte del endocardio y cual del epicardio
-        Buscar valores 1 de self.predict
-        - Si más cercano es 0: ENDOCARDIO
-        - Si más cercano es 2: EPICARDIO
-        - Si ambos cercanos: EPICARDIO
-        :return: guarda los resutlados en self.epicardio y self.endocardio
+        Detect which part of the myocardium is part of the endocardium and which part is part of the epicardium
+        Search for value 1 of self.predict
+        - If closest is 0: ENDOCARDIUM
+        - If closest is 2: EPICARDIUM
+        - If both close: EPICARDIUM
+        return: store results in self.epicardium and self.endocardium
         """
         for i in range(len(self.predict)):
             x_end = []
@@ -145,16 +145,16 @@ class Imagen:
 
     def mas_cercano(self, pos_x, pos_y, dist):
         """
-        Encuentra el punto más cercano de interes al punto de análisis. Se debe encontrar fuera del miocardio (0) o
-        sangre (2). Se buscar en cuadrados, con centro en el punto
-        :param pos_x: posicion x del punto
-        :param pos_y: posicion y del punto
-        :param dist: distancia desde el punto hacia donde analizar
-        :return: is0 True si detecto miocardio, False caso contrario. is2 True si detecto sangre, False, caso contrario
+        Find the closest point of interest to the point of analysis. It must be found outside of the myocardium (0) or
+        blood (2). It is searched in squares, with center in the point
+        param pos_x: x position of the point
+        param pos_y: y-position of the point
+        param dist: distance from the point to the point where to analyze
+        return: is0 True if myocardium is detected, False otherwise. is2 True if blood is detected, False otherwise.
         """
         is0 = False
         is2 = False
-        # Fijar pos_y-dist
+        # Set pos_y-dist
         if pos_y - dist >= 0:
             for i in range(dist):
                 if pos_x - i >= 0:
@@ -167,7 +167,7 @@ class Imagen:
                         is0 = True
                     elif self.predict[pos_x + i][pos_y - dist] == 2:
                         is2 = True
-        # Fijar pos_y + dist
+        # Set pos_y + dist
         if pos_y + dist < len(self.predict[0]):
             for i in range(dist):
                 if pos_x - i >= 0:
@@ -180,7 +180,7 @@ class Imagen:
                         is0 = True
                     elif self.predict[pos_x + i][pos_y + dist] == 2:
                         is2 = True
-        # Fijar pos_x-dist
+        # Set pos_x-dist
         if pos_x - dist >= 0:
             for i in range(dist):
                 if pos_y - i >= 0:
@@ -193,7 +193,7 @@ class Imagen:
                         is0 = True
                     elif self.predict[pos_x - dist][pos_y + i] == 2:
                         is2 = True
-        # Fijar pos_x + dist
+        # Set pos_x + dist
         if pos_x + dist >= len(self.predict):
             for i in range(dist):
                 if pos_y - i >= 0:
@@ -210,14 +210,14 @@ class Imagen:
 
     def get_prom_epi(self, parte):
         """
-        Calcula el promedio de intensidad de pixeles del Epicardio en la zona la imagen
-        :param parte: a que cantidad de data se refiere
-            0: toda la zona del epicardio
+        Calculates the average pixel intensity of the Epicardium in the image area.
+        param part: what amount of data you are referring to
+            0: whole epicardium area
             1: subdiv1
             2: subdiv2
             3: subdiv3
             4: subdiv4
-        :return: float valor del promedio de intensidad
+        return: float value of the average intensity
         """
         sum_in = 0
         total = 0
@@ -242,14 +242,14 @@ class Imagen:
 
     def get_prom_end(self, parte):
         """
-        Calcula el promedio de intensidad de pixeles del Endocardio en la zona la imagen
-        :param parte: a que cantidad de data se refiere
-            0: toda la zona del epicardio
+        Calculates the average pixel intensity of the Endocardium in the image area.
+        param part: what amount of data you are referring to
+            0: whole epicardium area
             1: subdiv1
             2: subdiv2
             3: subdiv3
             4: subdiv4
-        :return: float valor del promedio de intensidad
+        return: float value of the average intensity
         """
         sum_in = 0
         total = 0
@@ -274,14 +274,14 @@ class Imagen:
 
     def get_prom_blood(self, parte):
         """
-        Calcula el promedio de intensidad de pixeles de zona de sangre de la imagen
-        :param parte: a que cantidad de data se refiere
-            0: toda la zona del epicardio
+        Calculates the average intensity of blood zone pixels in the image.
+        param part: what amount of data you are referring to
+            0: whole epicardium area
             1: subdiv1
             2: subdiv2
             3: subdiv3
             4: subdiv4
-        :return: float valor del promedio de intensidad
+        return: float value of the average intensity
         """
         sum_in = 0
         total = 0
@@ -306,33 +306,33 @@ class Imagen:
 
     def dividir_miocardio(self, punto):
         """
-        Recibiendo el punto ingresado por el usario, divide el miocardio en las 4 secciones necesarias, utlizando el
-        sistema de cuadrantes, que complementan las funciones llamadas
-        :param punto: punto ingresado por el usuario
-        :return: void, las secciones quedan guardadas como parámetro de la imagen.
+        Receiving the point entered by the user, it divides the myocardium into the 4 necessary sections, using the quadrant system.
+        quadrant system, which complements the functions named
+        param point: point entered by the user.
+        return: void, the sections are saved as a parameter of the image.
         """
         x_p = int(punto[0])
         y_p = int(punto[1])
         p = self.calculo_m(x_p, y_p)
         if p != 0 and np.isfinite(p):
-            cuadrante = self.detectar_cuadrante(punto)  #  Da el cuadrante en el que se encuentra I, II, III, IV
+            cuadrante = self.detectar_cuadrante(punto)  #  Give the quadrant in which I, II, III, IV is located.
             self.m[cuadrante] = p
             self.m["init"] = cuadrante
             self.completar_pendientes()
             self.partir_puntos()
         else:
-            cuadrante = self.detectar_cuadrante(punto)  # Da el eje en el que se encuentra I-II, II-III, III-IV, I-IV
+            cuadrante = self.detectar_cuadrante(punto)  # Gives the axis on which I-II, II-III, III-IV, I-IV is located.
             self.m["init"] = cuadrante
             self.partir_puntos()
 
 
     def detectar_cuadrante(self, p):
         """
-        Dado un punto p, calcula el cuadrante al que pertenece, tomando en consideración que el (0,0) del sistema
-        creado es el punto de radio del pool de sangre. En caso de que toque un eje, se devuelve un par con los
-        cuadrantes que toca.
-        :param p: punto ingresado para analizar (x, y)
-        :return: String con el valor del cuadrante donde se encuentra
+        Given a point p, calculate the quadrant to which it belongs, taking into account that the (0,0) of the created system is the radius point of the blood pool.
+        created is the radius point of the blood pool. In case it touches an axis, a pair with the quadrants it touches is returned.
+        quadrants it touches.
+        param p: point entered to analyze (x, y)
+        return: String with the value of the quadrant where it is located.
         """
         x = p[0]
         y = p[1]
@@ -358,9 +358,9 @@ class Imagen:
 
     def completar_pendientes(self):
         """
-        Se llama a esta función solo si es que el punto ingresado tiene una pendiente distinta a 0 y finita.
-        Tomando el valor de pendiente del init, procede a calcular el resto de las penditentes usando m1*m2=-1, ya que
-        deben ser pendientes perpendiculares
+        This function is called only if the entered point has a slope other than 0 and finite.
+        Taking the slope value of the init, it proceeds to calculate the rest of the slopes using m1*m2=-1, since
+        must be perpendicular slopes.
         :return:
         """
         init = self.m["init"]
@@ -379,11 +379,11 @@ class Imagen:
 
     def calculo_m(self, x, y):
         """
-        Calulo de pendiente con respecto al centro del pool de sangre. Si es que se divide por cero, se devuelve el
-        infinito de nunpy
-        :param x: valor en el eje X
-        :param y: valor en el eje Y
-        :return: valor de pendiente calculada
+        Calculate slope with respect to the center of the blood pool. If it is divided by zero, it returns the
+        numpy infinity.
+        param x: X-axis value
+        param y: value on the y-axis
+        return: calculated slope value
         """
         try:
             if x < int(self.radio[0]):
@@ -396,11 +396,11 @@ class Imagen:
 
     def partir_puntos(self):
         """
-        Se recorren los puntos de predict, endocadio y epicardio, se encuentran los puntos de interes y luefo se ingresa
-        en la zona que le corresponde. Se usan las funciones ingresar_punto si es que el punto de toque ingresado se
-        encuentra en la zona de cuadrantes, o sino ingresar_por_eje, en caso de estar en uno de los ejes.
-        Se identifican según si la pendiente sigue siendo 0
-        :return: void, llena el diccionario con las 4 zonas divididas
+        The predict, endocardium and epicardium points are traversed, the points of interest are found and then 
+        the corresponding zone is entered. The functions enter_point are used if the entered touch point is in
+        the quadrant zone, or enter_by_axis, if it is on one of the axes.they are identified according to whether
+        the slope is still 0.
+        return: void, fills the dictionary with the 4 divided zones
         """
         for i in range(len(self.predict)):
             end1 = []
@@ -463,15 +463,15 @@ class Imagen:
 
     def ingresar_punto(self, pos, pend, a1, a2, a3, a4):
         """
-        Dado el punto, se ingresa el punto al array que le corresponde como un 1, mientras que en los otros se ingresa
-        un 0, para mantener la forma de imagen y luego poder ingesarla
-        :param pos: posicion con respecto al cuadrante
-        :param pend: pendiente del punto, sirve para comparar y ver a cual segmento va
-        :param a1: primer array de forma
-        :param a2: segundo array de forma
-        :param a3: tercer array de forma
-        :param a4: cuarto array de forma
-        :return: void, se finaliza con el punto agregado donde corresponde, y el resto con 0
+        Given the point, the point is entered into the corresponding array as a 1, while the others are entered as a 0, 
+        in order to keep the shape of the image and then be able to enter it.
+         param pos: position with respect to the quadrant
+         param pend: slope of the point, used to compare and see which segment it goes to.
+         param a1: first shape array
+         param a2: second shape array
+         param a3: third shape array
+         param a4: fourth shape array
+        return: void, ends with the point added where it corresponds, and the rest with 0
         """
         if pos == '0':
             a1.append(0); a2.append(0); a3.append(0); a4.append(0)
@@ -595,14 +595,14 @@ class Imagen:
 
     def ingresar_por_eje(self, pos, a1, a2, a3, a4):
         """
-        Caso en el que el punto tocado sea parte de algún eje. En este caso, el punto a ingresar, será parte de un
-        cuadrante directamente, ya que las secciones son cuadrantes
-        :param pos: pos del punto a ingresar
-        :param a1: primera posc de array
-        :param a2: segunda posc de array
-        :param a3: tercero posc de array
-        :param a4: cuarto posc de array
-        :return: void, llena los array con sus correspondientes
+        Case in which the touched point is part of an axis. In this case, the point to be entered will be part of a quadrant directly, since the sections are
+        quadrant directly, since the sections are quadrants.
+         param pos: pos of the point to be entered
+         param a1: first posc of array
+         param a2: second posc of array
+         param a3: third posc of array
+         param a4: fourth posc of array
+        return: void, fills the arrays with their corresponding
         """
         if pos == '0':
             a1.append(0); a2.append(0); a3.append(0); a4.append(0)
