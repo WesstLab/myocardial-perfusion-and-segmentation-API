@@ -26,7 +26,7 @@ class ResultScreen:
         self.frame_princial = frame_principal
         self.parent = parent
 
-        #  FRAME OPCIONES
+        #  FRAME OPTIONS
         self.boton_export = Button(self.frame_opciones,bg='#0052cc',activebackground='#0052cc',activeforeground='#aaffaa',fg='#ffffff',borderwidth=1,width=15,height=2)
         self.boton_particion = Button(self.frame_opciones,bg='#0052cc',activebackground='#0052cc',activeforeground='#aaffaa',fg='#ffffff',borderwidth=1,width=15,height=2)
         self.boton_volver = Button(self.frame_opciones,bg='#0052cc',activebackground='#0052cc',activeforeground='#aaffaa',fg='#ffffff',borderwidth=1,width=15,height=2)
@@ -79,7 +79,7 @@ class ResultScreen:
         self.button_san = Button(self.f_button_san,bg='#0052cc',activebackground='#0052cc',activeforeground='#aaffaa',fg='#ffffff',borderwidth=1,width=15,height=2)
         CreateToolTip(self.f_button_san, string.tt_bt_san)
 
-        #  FRAME IMAGENES
+        #  FRAME IMAGES
         self.f_titulo_img_res = Frame(self.frame_princial)
         self.titulo_img_res = Label(self.f_titulo_img_res)
         self.f_titulo_img_stress = Frame(self.frame_princial)
@@ -220,7 +220,7 @@ class ResultScreen:
         self.iniciar_data()
 
     def iniciar_opciones(self):
-        # BOTONES OPT
+        # BUTTONS OPT
         self.boton_export.config(text=string.boton_export,
                                  command=self.exportacion_pdf)
         self.boton_export.place(x=dim.pos_x_buttons_opt,
@@ -241,7 +241,6 @@ class ResultScreen:
         # INFO FRAME
         self.f_titulo_lat.config(width=dim.width_res_opt_title,
                                  height=dim.height_res_opt_title)
-        # bordes para prueba de frame ,relief="solid", bd=1)
         self.f_titulo_lat.pack_propagate(0)
         self.titulo_lat.config(text=string.txt_lateral_title,
                                font=('', 14)) # original font=('',14)
@@ -281,7 +280,7 @@ class ResultScreen:
         self.f_espacio_lateral_1.pack_propagate(0)
         self.espacio_lateral_1.pack(fill=BOTH, expand=1)
 
-        #  Botones pada modificar curvas, ahora solo un boton para ambas
+        #  Buttons to modify curves, now only one button for both.
         self.f_button_san.config(width=dim.width_res_opt_curva_button,
                                  height=dim.height_res_opt_curva_button)
         self.f_button_san.pack_propagate(0)
@@ -780,7 +779,7 @@ class ResultScreen:
 
     def iniciar_data(self):
 
-        #  Carga de datos de paciente
+        #  Patient data upload
         name_paciente = self.parent.patient.s_name
         series_id_patient = self.parent.patient.s_series_id
         series_des_patient = self.parent.patient.s_series_desc
@@ -790,13 +789,13 @@ class ResultScreen:
         self.serie_desc.config(text=(self.serie_desc.cget("text") + series_des_patient))
         self.study_desc.config(text=(self.study_desc.cget("text") + study_patient))
 
-        #  Carga de datos antiguos
+        #  Loading of old data
         file1 = open('paq_rest.obj', 'rb')
         self.parent.img_rest = pickle.load(file1)
         file2 = open('paq_stress.obj', 'rb')
         self.parent.img_stress = pickle.load(file2)
 
-        #  Carga de Valores de Imagenes : WW-WL-SLICE
+        #  Loading Image Values : WW-WL-SLICE
         valores_slice = self.parent.img_stress.get_array_slice()
         self.valor_slice['values'] = valores_slice
         self.valor_slice.bind("<<ComboboxSelected>>", self.sle_cbox)
@@ -804,15 +803,15 @@ class ResultScreen:
         self.valor_wl.insert(0, str(self.parent.img_stress.contenido[self.slice_select_stress].wl))
         self.valor_ww.insert(0, str(self.parent.img_stress.contenido[self.slice_select_stress].ww))
 
-        #  Carga de Imágenes de Visualización
+        #  Loading Display Images
         self.imprimir_imagenes(tipo=0)
         self.print_img_prediccion(tipo=0)
 
-        #  Carga de funciones para toque de Canvas - Imágenes
+        #  Loading of Canvas touch functions - Images
         self.img_res.bind("<Button-1>", self.pressed_rest)
         self.img_stress.bind("<Button-1>", self.pressed_stress)
 
-        #  Carga de datos de curvas
+        #  Loading curve data
         self.curva_print(1)
         pass
 
@@ -878,14 +877,14 @@ class ResultScreen:
 
     def mov_img(self, paquete, direccion):
         """
-        Mueve las imágenes de la visualización. Método llamado por los botones de movimiento
-        :param paquete: paquete de imagenes a mover
+        Moves the display images. Method called by the move buttons
+        param packet: packet of images to move
             1: rest
             2: stress
-        :param direccion: dirección de movimiento
+        param direction: direction of movement
             1: Left
             2: Right
-        :return: llama a imprimir_imagen, segun sea el caso
+        return: call to print_image, as appropriate
         """
         if paquete == 1:
             if direccion == 1:
@@ -904,14 +903,14 @@ class ResultScreen:
 
     def set_init_fin(self, paquete, opcion):
         """
-        Set el valor del frame inicial y final de una imagen. Ayuda a descartar valores
-        :param paquete: paquete de imagenes a mover
+        Set the value of the start and end frame of an image. Helps to discard values
+        param packet: packet of images to be moved
             1: rest
             2: stress
-        :param opcion: Opcion a modificar
+        param option: Option to modify
             1: Init
-            2: Fin
-        :return:
+            2: End
+        return:
         """
         if paquete == 1:
             if opcion == 1:
@@ -928,13 +927,13 @@ class ResultScreen:
 
     def imprimir_imagenes(self, tipo=0):
         """
-        Muestra las imagenes en la zona del canvas correspondientes. Puede mostrar 1 de las dos imagenes, o actualizar
-        ambas, dependiendo de los parámetros ingresados
-        :param tipo: Determina cual de las imagenes se desplegará
-            0: Ambas Imágenes
-            1: Muestra img Rest
-            2: Muestra img Stress
-        :return: imágenes mostradas en el canvas
+        Displays the images in the corresponding area of the canvas. You can display 1 of the 2 images, or update both, depending on the
+        both, depending on the parameters entered
+        param type: Determines which of the images will be displayed
+            0: Both images
+            1: Display img Rest
+            2: Display img Stress
+        return: images displayed in the canvas
         """
         if tipo == 0 or tipo == 1:
             #  Se imprime rest
@@ -957,7 +956,7 @@ class ResultScreen:
             else:
                 self.der_rest.config(state=DISABLED)
         if tipo == 0 or tipo == 2:
-            #  Se imprime stress
+            #  Stress printed
             x, y = self.parent.img_stress.contenido[self.slice_select_stress].imgs[0].pixel_array.shape
             height = int(dim.height_img_res_screen)
             width = int(height * y / x)
@@ -1064,12 +1063,12 @@ class ResultScreen:
 
     def curva_print(self, zona):
         """
-        Despliega la curva de perfusión de Stress. Dependiendo del caso
-        :param zona: Zona que se quiere observar
-            1: Sangre
-            2: Epicardio
-            3: Endocardio
-        :return: Curva impresa en el canvas
+        Display the Stress perfusion curve. Depending on the case
+        param zone: Zone to be observed
+            1: Blood
+            2: Epicardium
+            3: Endocardium
+        :return: Curve printed on the canvas
         """
         init_rest = self.parent.img_rest.contenido[self.slice_select_rest].inicio
         fin_rest = self.parent.img_rest.contenido[self.slice_select_rest].fin
@@ -1136,12 +1135,12 @@ class ResultScreen:
 
     def print_img_prediccion(self, tipo):
         """
-        Imprime las preducciones, según la zona de interés
-        :param tipo: Que tipo de imágen se desplegará
-            0: Ambas Imágenes
-            1: Muestra img Rest
-            2: Muestra img Stress
-        :return: Imagen sobre canvas
+        Prints the preductions, according to the area of interest.
+        param type: What type of image to display
+            0: Both images
+            1: Show Rest image
+            2: Display image Stress
+        return: Image on canvas
         """
         zona = self.zona_select
         if tipo == 0 or tipo == 1:
@@ -1170,18 +1169,18 @@ class ResultScreen:
 
     def get_predict(self, tipo, zona, w, h):
         """
-        Entrega el array de la imagen en RGBA de la zona que se quiere mostrar
-        :param tipo: Que tipo de imágen se desplegará
-            0: Ambas Imágenes
-            1: Muestra img Rest
-            2: Muestra img Stress
-        :param zona: Zona que se quiere observar
-            1: Sangre
-            2: Epicardio
-            3: Endocardio
-        :param w: Width que se quiere la imagen
-        :param h: Height que se quiere la imagen
-        :return: Array RGBA
+        Delivers the array of the RGBA image of the area to be displayed.
+        param type: What type of image to display
+            0: Both Images
+            1: Show Rest image
+            2: Show Stress image
+        param zone: Zone to be displayed
+            1: Blood
+            2: Epicardium
+            3: Endocardium
+        param w: Width that you want the image to show
+        :param h: Height you want the image to show
+        return: RGBA Array
         """
         img_rgba = None
         if tipo == 0 or tipo == 1:
