@@ -1,4 +1,4 @@
-# Archivo contenedor de los string que se utlizan en la aplicación
+# Container file of the strings used in the application
 
 STR_ = ""
 STR_TITULO = "Myocardial Perfusion"
@@ -9,12 +9,12 @@ TXT_UL_REST = "Upload REST"
 TXT_UL_STRESS = "Upload STRESS"
 TXT_UL_PROCESS = "Process images"
 
-# Textos filedialog
+# Text filedialog
 FileDialog_Stress = "Select Dicom files from Stress"
 FileDialog_Rest = "Select Dicom files from Rest"
 
 
-#  TEXTOS RESULT SCREEN
+#  TEXT RESULT SCREEN
 boton_export = "Export results"
 boton_particion = "Divide myocardium"
 boton_volver = "New patient"
@@ -46,7 +46,7 @@ tt_res_peak = "Calculated maximum, under 10% expected noise"
 tt_res_pendiente = "Initial slope, calculated between the 10% and 90% point of maximum"
 tt_res_coef = "Coefficient Stress/Rest"
 
-# Tooltips Botones Res
+# Tooltips Buttons Res
 tt_export = "Click to generate PDF report"
 tt_particion = "Click, then press on the images starting point of partition"
 tt_volver = "Click to enter a new patient"
@@ -55,16 +55,14 @@ tt_cancelar = "Cancel Partition process"
 tt_confirmar = "Click to process points, it may take a few minutes"
 tt_borrar_puntos = "Delete points placed on images"
 
-# Tooltip Sobre Valorez
+# Tooltip About Values
 tt_slice = "Selection of cut to analyze"
 tt_valor_div = "Selection of Subdivision of the Myocardium to Analyze"
 tt_recargar = "Press to reload the WW and WL values"
 tt_ww = "Window Width value"
 tt_wl = "Window Level value"
 
-# Tooltip Curvas de Perfusion
+# Tooltip Perfusion Curves
 tt_bt_epi = "Click to see Epicardium curve"
 tt_bt_end = "Click to see Endocardial curve"
 tt_bt_san = "Click to see Blood Pool curve"
-
-# Estilos Botones
