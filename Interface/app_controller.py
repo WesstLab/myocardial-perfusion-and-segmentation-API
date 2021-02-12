@@ -89,7 +89,7 @@ class AppController:
                 print("Caught Scroll Error")
         #  self.pantalla.mainloop()
 
-    def procces_rest_img(self, path_img):
+    def process_rest_img(self, path_img):
         """
         This function saves the dcm images uploaded to the corresponding list.
 
@@ -104,7 +104,7 @@ class AppController:
         # self.predict_img()
         return True
 
-    def procces_stress_img(self, path_img):
+    def process_stress_img(self, path_img):
         """
         This function saves the dcm images uploaded to the corresponding list.
 
@@ -136,19 +136,19 @@ class AppController:
         data_extract_stress, frames_drop_stress = dataset_stress.get_data()
         pred_stress = predict_ztxy(model, data_extract_stress)
         if frames_drop_stress == 0:
-            borrar = False
+            delete = False
         else:
-            borrar = True
-        self.img_stress.agregar_predict(pred_stress, borrar)
+            delete = True
+        self.img_stress.agregar_predict(pred_stress, delete)
         pass
         dataset_rest = InputDataApp(self.dir_img_rest)
         data_extract_rest, frames_drop_rest = dataset_rest.get_data()
         pred_rest = predict_ztxy(model, data_extract_rest)
         if frames_drop_rest == 0:
-            borrar = False
+            delete = False
         else:
-            borrar = True
-        self.img_rest.agregar_predict(pred_rest, borrar)
+            delete = True
+        self.img_rest.agregar_predict(pred_rest, delete)
 
     def init_result_screen(self):
         pass
