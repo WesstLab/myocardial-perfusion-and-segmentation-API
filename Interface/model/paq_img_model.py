@@ -46,11 +46,11 @@ class PaqImgModel:
         self.contenido.sort(key=lambda x: x.slice_loc)
 
     def agregar_predict(self, predict, borrar_frames):
-        #  BORRAR FRAMES QUE NO IMPORTAN
+        #  DELETE FRAMES THAT DO NOT MATTER
         if borrar_frames:
             self.borrar_frames()
-        #  AGRERGAR LOS PREDICT A SUS IMAGENES, SE ASUME QUE SLICE Y TIEMPO ESTAN EN ORDEN
-        #  detectar primer slice, para poder ingresar imagenes desde ahí
+        #  ADD PREDICT TO YOUR IMAGES, SLICE AND TIME ARE ASSUMED TO BE IN ORDER
+        #  detect first slice, so you can enter images from there
         pos = self.get_primer_slice_time()
         cant = self.get_cantidad_slice()
         for i in range(len(predict)):
@@ -89,9 +89,9 @@ class PaqImgModel:
 
     def calculo_division(self, punto):
         """
-        Se pasa por cada slice, calculando la división del miocardio, según el punto entregado por el usuario.
-        :param punto: punto entregado por el usuario
-        :return: void, se guarda el data en cada slice
+        It is passed through each slice, calculating the division of the myocardium, according to the point given by the user.
+        param point: point given by the user
+        return: void, the data is saved in each slice.
         """
         for slice_cont in self.contenido:
             slice_cont.calcular_division_miocardio(punto)
