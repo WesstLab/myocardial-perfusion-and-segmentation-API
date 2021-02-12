@@ -18,12 +18,12 @@ class SliceModel:
         self.fin = 0
         self.pos_actual = 0
 
-        #  Datos de curvas, promedios de intensidades
+        #  Curve data, averages of intensities
         self.data_sangre = {'total': [], 'sub1': [], 'sub2': [], 'sub3': [], 'sub4': []}
         self.data_epicardio = {'total': [], 'sub1': [], 'sub2': [], 'sub3': [], 'sub4': []}
         self.data_endocardio = {'total': [], 'sub1': [], 'sub2': [], 'sub3': [], 'sub4': []}
 
-        self.data_tiempo = []   # Comun para todas las curvas
+        self.data_tiempo = []   # Common for all curves
 
         self.ww = 0
         self.wl = 0
@@ -72,9 +72,9 @@ class SliceModel:
 
     def current_predict(self, zona):
         """
-        Entrega el predict de la zona pedida
-        :param zona: Zona pedida
-            0: Toda
+        Delivers the predict of the requested zone
+        param zone: Requested zone
+            0: All
             1: Sub1
             2: Sub2
             3: Sub3
@@ -106,18 +106,18 @@ class SliceModel:
 
     def calculo_curva(self, tipo, zona):
         """
-        Calcula el promedio de intensidades de las imágenes del array a analiazar
-        :param tipo: los datos con los que se trabajara
-            0: toda la zona
-            1: subdivisión 1
-            2: subdivisión 2
-            3: subdivisión 3
-            4: subdivisión 4
-        :param zona: zona en la que se trabajara
-            1: sangre
-            2: epicardio
-            3: endocardio
-        :return: par de arrays data vs tiempo
+        Calculates the average intensity of the images in the array to be analyzed.
+        param type: the data to work with
+            0: the whole area
+            1: subdivision 1
+            2: subdivision 2
+            3: subdivision 3
+            4: subdivision 4
+        param zone: zone to be worked in
+            1: blood
+            2: epicardium
+            3: endocardium
+        return: pair of arrays data vs time
         """
         data = []
         for image in self.imgs:
@@ -145,11 +145,11 @@ class SliceModel:
 
     def calcular_division_miocardio(self, punto):
         """
-        Al entregarle el punto ingresado por el usuario, se dispone a recorrer las imágenes para calcular las cuatro
-        divisiones del miocardio que se necesitan. Además, guarda el promedio de intensidades de curva en los
-        parámetros de la clase
-        :param punto: punto (x, y) ingresados por el usuario
-        :return: void, quedan los datos guardados en la imagen, además de los parametros de intensidad de curva
+        When given the point entered by the user, it will go through the images to calculate the four myocardial divisions needed.
+        myocardial divisions needed. In addition, it saves the average curve intensities in the
+        parameters of the class
+        param point: point (x, y) entered by the user.
+        return: void, the data is saved in the image, in addition to the curve intensity parameters.
         """
         for imagen in self.imgs:
             imagen.dividir_miocardio(punto)
