@@ -36,5 +36,5 @@ With that the application should work and process the images correctly.
 
 # 3. Notes
 
-1. To execute the application run **"test.py"**, you can run it via terminal commands or some IDE like PyCharm, just remember to use the delivered virtual environment (environment.yml)
+1. To execute the application run **"test.py"**, you can run it via terminal commands or some IDE like PyCharm, just remember to use the delivered virtual environment (**environment.yml**)
 2. The **"Export results"** button is currently unavailable.
