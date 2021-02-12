@@ -5,12 +5,12 @@ import pydicom
 
 from model import imagen_model as image
 
-# Constantes Generales
+# General Constants
 background = "#EDEDEC"
 width_sc = 1280
 height_sc = 720
 
-# Variables generales
+# General variables
 cantImg = 0
 res = []
 
@@ -73,11 +73,11 @@ def procesar_img():
 
 
 def seccionar():
-    print("SECCIONADO")
+    print("SECTIONING")
 
 
 def resutlados():
-    print("RESULTADOS")
+    print("RESULTS")
 
 
 def subir_img():
@@ -108,12 +108,12 @@ def frame_lista_img():
                          anchor="center")
 
 
-# Inicio de Pantalla
+# Screen Startup
 pantalla = Tk()
 
-# Configuración de Pantalla
-pantalla.title("Perfusión Miocardica Universidad de Chile")
-pantalla.resizable(False, False)  # No deja redimencionar
+# Display Configuration
+pantalla.title("Myocardial Perfusion Universidad de Chile")
+pantalla.resizable(False, False)  # Does not let you resize
 pantalla.config(bg=background)
 
 # Frames
@@ -143,7 +143,7 @@ frame_opt.config(bg=background,
 
 # Frame Toma de Datos
 textNoHayElementos = Label(frame_datos,
-                           text="Seleccione las imágenes que \n desee analizar",
+                           text="Select the images \n you wish to analyze",
                            bg=background,
                            fg="#000000",
                            justify="center")
@@ -151,7 +151,7 @@ textNoHayElementos.place(x=int(width_sc / 10),
                          y=50,
                          anchor="center")
 botonAgregarImg = Button(frame_datos,
-                         text="Subir Imagenes",
+                         text="Upload Images",
                          command=subir_img,
                          bg=background,
                          borderwidth=0,
@@ -160,14 +160,14 @@ botonAgregarImg.place(x=int(width_sc / 10),
                       y=100,
                       anchor="center")
 
-# Frame de Lista de Imagenes
+# Image List Frame
 textDeseaAnalizar = Label(frame_opt,
-                          text="Desea empezar el análisis de las imagenes?",
+                          text="Do you want to start image analysis?",
                           bg=background,
                           fg="#000000",
                           justify="center")
 textListaCant = Label(frame_datos,
-                      text="Imágenes seleccionadas:",
+                      text="Selected images:",
                       bg=background,
                       fg="#000000",
                       justify="center")
@@ -177,7 +177,7 @@ textCantidadImg = Label(frame_datos,
                         fg="#000000",
                         justify="center")
 botonSiProceso = Button(frame_opt,
-                        text="Si",
+                        text="Yes",
                         command=procesar_img,
                         bg=background,
                         borderwidth=0,
@@ -189,29 +189,29 @@ botonNoProceso = Button(frame_opt,
                         borderwidth=0,
                         fg=background)
 
-# Frame de Proces
+# Process frame
 botonProcesar = Button(frame_opt,
-                       text="PASAR",
+                       text="PASS",
                        command=frame_imagenes,
                        bg=background,
                        borderwidth=0,
                        fg=background)
 
-# Frame de Muestra de Imagenes
+# Sample Image Frame
 botonResultados = Button(frame_opt,
-                         text="Resultados",
+                         text="Results",
                          command=resutlados,
                          bg=background,
                          borderwidth=0,
                          fg=background)
 botonSeccionar = Button(frame_opt,
-                        text="Generar secciones",
+                        text="Generate sections",
                         command=seccionar,
                         bg=background,
                         borderwidth=0,
                         fg=background)
 botonVolverEmpezar = Button(frame_opt,
-                            text="Otro Análisis",
+                            text="Other Analysis",
                             command=toma_datos,
                             bg=background,
                             borderwidth=0,
