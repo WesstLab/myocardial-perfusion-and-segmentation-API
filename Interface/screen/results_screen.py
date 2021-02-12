@@ -174,7 +174,7 @@ class ResultScreen:
         self.f_dif_9 = Frame(self.frame_princial)
         self.dif_9 = Label(self.f_dif_8)
 
-        #  Labels de Tabla de Resultados
+        #  Results Table Labels
         self.f_tabla_resultados = Frame(self.frame_princial)
         self.resultados_stress = None
         self.resultados_rest = None
@@ -200,7 +200,7 @@ class ResultScreen:
         self.habilitar_punto_stress = 0
         self.habilitado_para_div = 0
 
-        #  Imagenes mostradas en Canvas
+        #  Images displayed in Canvas
         self.predict_rest = None
         self.predict_stress = None
         self.imagen_rest = None
@@ -936,7 +936,7 @@ class ResultScreen:
         return: images displayed in the canvas
         """
         if tipo == 0 or tipo == 1:
-            #  Se imprime rest
+            #  Rest printed
             x, y = self.parent.img_rest.contenido[self.slice_select_rest].imgs[0].pixel_array.shape
             height = int(dim.height_img_res_screen)
             width = int(height*y/x)
@@ -1015,7 +1015,7 @@ class ResultScreen:
 
     def volver_upload(self):
         if self.habilitado_para_div == 0 or self.habilitado_para_div ==  2:
-            print("Volver UpLoad")
+            print("Back UpLoad")
             self.parent.nuevo_paciente()
         elif self.habilitado_para_div == 1:
             self.habilitado_para_div = 0
@@ -1144,7 +1144,7 @@ class ResultScreen:
         """
         zona = self.zona_select
         if tipo == 0 or tipo == 1:
-            #  Imprimer Rest
+            #  Print Rest
             x, y = self.parent.img_rest.contenido[self.slice_select_rest].imgs[0].pixel_array.shape
             height = int(dim.height_img_res_screen)
             width = int(height * y / x)
@@ -1156,7 +1156,7 @@ class ResultScreen:
 
             pass
         if tipo == 0 or tipo == 2:
-            #  Imprimer Stress
+            #  Print Stress
             x, y = self.parent.img_stress.contenido[self.slice_select_stress].imgs[0].pixel_array.shape
             height = int(dim.height_img_res_screen)
             width = int(height * y / x)
@@ -1184,7 +1184,7 @@ class ResultScreen:
         """
         img_rgba = None
         if tipo == 0 or tipo == 1:
-            # Devolver imagen REST
+            # Return image REST
             if self.subdiv == 'total':
                 imgs_array = self.parent.img_rest.contenido[
                     int(self.slice_select_rest)].current_predict(0)[zona - 1]
@@ -1194,7 +1194,7 @@ class ResultScreen:
                     int(self.slice_select_rest)].current_predict(parte)[zona - 1]
             img_rgba = img2rgba(imgs_array, zona, w, h)
         if tipo == 0 or tipo == 2:
-            # Devolver imagen STRESS
+            # Return image STRESS
             if self.subdiv == 'total':
                 imgs_array = self.parent.img_stress.contenido[
                     int(self.slice_select_stress)].current_predict(0)[zona - 1]
