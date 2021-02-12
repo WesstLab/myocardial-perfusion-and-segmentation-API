@@ -4,6 +4,8 @@ API prototype for myocardial magnetic resonance image visualization and segmenta
 
 # 1. Demo 
 
+In the **"Dataset"** folder you can find images in DICOM format that were used to test the application.
+
 # 2. Installation
 
 ## Environment installation
@@ -34,4 +36,4 @@ With that the application should work and process the images correctly.
 # 3. Notes
 
 1. To execute the application run **"test.py"**
-2. The **"Export results"** button is currently unavailable.
+3. The **"Export results"** button is currently unavailable.
