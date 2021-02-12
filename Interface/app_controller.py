@@ -37,12 +37,12 @@ class AppController:
 
         self.patient = Patient()
 
-        # Inicio de Pantalla
+        # Screen Startup
         self.pantalla = Tk()
 
-        # Configuración de Pantalla
+        # Display Configuration
         self.pantalla.title(string.STR_TITULO)
-        self.pantalla.resizable(False, False)  # No deja redimencionar
+        self.pantalla.resizable(False, False)  # Does not allow to resize
         self.pantalla.config(bg=colors.background)
 
         # Frames
@@ -91,13 +91,13 @@ class AppController:
 
     def procces_rest_img(self, path_img):
         """
-        Esta función guarda las imágenes dcm subidas a la lista correspondiente
+        This function saves the dcm images uploaded to the corresponding list.
 
-        Devuleve boolean, si es que puede mostrar el botón del proceso siguiente, que es el encargado de hacer el
-        procesamiento de la imagen
+        Returns boolean, if it can display the button of the next process, which is responsible for
+        doing the image processing
 
-        Parámetros:
-        img -- lista de rutas de las imágenes
+        Parameters:
+        img -- list of image paths
         """
         self.dir_img_rest = path_img
         print(path_img)
@@ -106,13 +106,13 @@ class AppController:
 
     def procces_stress_img(self, path_img):
         """
-        Esta función guarda las imágenes dcm subidas a la lista correspondiente
+        This function saves the dcm images uploaded to the corresponding list.
 
-        Devuleve boolean, si es que puede mostrar el botón del proceso siguiente, que es el encargado de hacer el
-        procesamiento de la imagen
+        Returns boolean, if it can display the button of the next process, which is in charge of doing the
+        processing of the image
 
-        Parámetros:
-        img -- lista de rutas de las imágenes
+        Parameters:
+        img -- list of image paths
         """
         self.dir_img_stress = path_img
         print(path_img)
@@ -125,13 +125,7 @@ class AppController:
             return True
 
     def predict_img(self):
-        """
-        asd
-        print(os.getcwd() + '\\segmentation\\checkpoint\\model')
-        checkpoint_path = "\\Users\\Seba\\Desktop\\ProyectoE\\" \
-                          "Interfaz1\\segmentation\\checkpoint\\model"
-
-        """
+        
         print(os.getcwd() + '\\segmentation\\checkpoint\\model')
         checkpoint_path = os.getcwd() + '\\segmentation\\checkpoint\\model'
 
@@ -160,7 +154,7 @@ class AppController:
         pass
 
     def process_img(self):
-        self.process_popup("Procesando imágenes. \n Esto puede tardar varios minutos...")
+        self.process_popup("Processing images. \n This can take several minutes...")
         print("processing")
         self.predict_img()
         file_pk = open('paq_stress.obj', 'wb')
