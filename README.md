@@ -4,6 +4,19 @@ API prototype for myocardial magnetic resonance image visualization and segmenta
 
 # 1. Demo 
 
+To execute the application run "test.py", you can run it via terminal commands or some IDE like PyCharm
+
+for terminal commands:
+
+```bash
+C:\Users\wesstl>conda activate myocardial_perfusion
+
+(myocardial_perfusion) C:\Users\wesstl>cd C:\Users\wesstl\Documents\GitHub\myocardial-perfusion-and-segmentation-API\Interface
+
+(myocardial_perfusion) C:\Users\wesstl\Documents\GitHub\myocardial-perfusion-and-segmentation-API\Interface>python test.py
+```
+just remember to use the delivered virtual environment (environment.yml) and place the path where the project was saved
+
 In the **"Dataset"** folder you can find images in DICOM format that were used to test the application.
 
 
@@ -36,5 +49,4 @@ With that the application should work and process the images correctly.
 
 # 3. Notes
 
-1. To execute the application run **"test.py"**, you can run it via terminal commands or some IDE like PyCharm, just remember to use the delivered virtual environment (**environment.yml**)
-2. The **"Export results"** button is currently unavailable.
+1. The "Export results" button is currently unavailable
