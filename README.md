@@ -6,7 +6,7 @@ API prototype for myocardial magnetic resonance image visualization and segmenta
 
 To execute the application run "test.py", you can run it via terminal commands or some IDE like PyCharm
 
-for terminal commands:
+for terminal commands example:
 
 ```bash
 C:\Users\wesstl>conda activate myocardial_perfusion
