@@ -38,31 +38,30 @@ class AppController:
         self.patient = Patient()
 
         # Screen Startup
-        self.pantalla = Tk()
+        self.screen = Tk()
 
         # Display Configuration
-        self.pantalla.title(string.STR_TITULO)
-        self.pantalla.resizable(False, False)  # Does not allow to resize
-        self.pantalla.config(bg=colors.background)
+        self.screen.title(string.STR_TITULO)
+        self.screen.resizable(False, False)  # Does not allow to resize
+        self.screen.config(bg=colors.background)
 
         # Frames
-        self.frame_datos = Frame(self.pantalla)
-        self.frame_datos.config(bg=colors.background,
-                                width=dim.WIDTH_FRAME_DATOS,
-                                height=dim.HEIGHT_FRAME_DATOS,
-                                relief="ridge",
-                                borderwidth=2,
-                                highlightbackground="black")
+        self.frame_data = Frame(self.screen)
+        self.frame_data.config(bg=colors.background,
+                               width=dim.WIDTH_FRAME_DATA,
+                               height=dim.HEIGHT_FRAME_DATA,
+                               relief="ridge",
+                               borderwidth=2,
+                               highlightbackground="black")
 
-        self.frame_img = Frame(self.pantalla)
-        self.frame_img.config(#bg=colors.background,
-                              width=dim.WIDTH_FRAME_IMG,
+        self.frame_img = Frame(self.screen)
+        self.frame_img.config(width=dim.WIDTH_FRAME_IMG,
                               height=dim.HEIGHT_FRAME_IMG,
                               relief="ridge",
                               borderwidth=2,
                               highlightbackground="black")
 
-        self.frame_opt = Frame(self.pantalla)
+        self.frame_opt = Frame(self.screen)
         self.frame_opt.config(bg=colors.background,
                               width=dim.WIDTH_FRAME_OPT,
                               height=dim.HEIGHT_FRAME_OPT,
@@ -70,11 +69,11 @@ class AppController:
                               borderwidth=2,
                               highlightbackground="black")
 
-        frame_ul = UploadImage(frame_lateral=self.frame_datos, frame_opciones=self.frame_opt,
+        frame_ul = UploadImage(frame_lateral=self.frame_data, frame_opciones=self.frame_opt,
                                frame_principal=self.frame_img, parent=self)
         frame_ul.start()
 
-        self.frame_datos.grid(row=0, column=0, rowspan=2)
+        self.frame_data.grid(row=0, column=0, rowspan=2)
         self.frame_img.grid(row=0, column=1)
         self.frame_opt.grid(row=1, column=1)
 
@@ -83,11 +82,11 @@ class AppController:
     def start(self):
         while True:
             try:
-                self.pantalla.update_idletasks()
-                self.pantalla.update()
+                self.screen.update_idletasks()
+                self.screen.update()
             except UnicodeDecodeError:
                 print("Caught Scroll Error")
-        #  self.pantalla.mainloop()
+        #  self.screen.mainloop()
 
     def process_rest_img(self, path_img):
         """
@@ -168,8 +167,8 @@ class AppController:
         self.close_popup()
         pass
 
-    def clean_pantalla(self):
-        for widget in self.frame_datos.winfo_children():
+    def clean_screen(self):
+        for widget in self.frame_data.winfo_children():
             widget.destroy()
         for widget in self.frame_opt.winfo_children():
             widget.destroy()
@@ -177,21 +176,21 @@ class AppController:
             widget.destroy()
 
     def to_result_screen(self):
-        self.clean_pantalla()
-        res_screen = ResultScreen(self.frame_datos, self.frame_opt, self.frame_img, self)
+        self.clean_screen()
+        res_screen = ResultScreen(self.frame_data, self.frame_opt, self.frame_img, self)
         res_screen.start()
 
-    def clean_pantalla_pack(self):
-        for widget in self.frame_datos.winfo_children():
+    def clean_screen_pack(self):
+        for widget in self.frame_data.winfo_children():
             widget.destroy()
         for widget in self.frame_opt.winfo_children():
             widget.destroy()
         for widget in self.frame_img.winfo_children():
             widget.destroy()
 
-    def nuevo_paciente(self):
-        self.clean_pantalla_pack()
-        frame_ul = UploadImage(frame_lateral=self.frame_datos, frame_opciones=self.frame_opt,
+    def new_patient(self):
+        self.clean_screen_pack()
+        frame_ul = UploadImage(frame_lateral=self.frame_data, frame_opciones=self.frame_opt,
                                frame_principal=self.frame_img, parent=self)
         frame_ul.start()
 
